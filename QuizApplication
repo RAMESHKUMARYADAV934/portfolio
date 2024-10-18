@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+public class QuizApplication {
+    public static void main(String[] args) {
+        String[][] questions = {
+            {"What is the capital of France?", "Berlin", "Madrid", "Paris", "Rome", "c"},
+            // Add more questions here as needed
+            {"What is the capital of Germany?", "Berlin", "Madrid", "Paris", "Rome", "a"},
+            {"What is the capital of Spain?", "Berlin", "Madrid", "Paris", "Rome", "b"},
+            {"What is the capital of Italy?", "Berlin", "Madrid", "Paris", "Rome", "d"}
+        };
+
+        int score = 0;
+        Scanner scanner = new Scanner(System.in);
+
+        for (String[] question : questions) {
+            System.out.println(question[0]);
+            System.out.println("a) " + question[1]);
+            System.out.println("b) " + question[2]);
+            System.out.println("c) " + question[3]);
+            System.out.println("d) " + question[4]);
+            System.out.print("Your answer: ");
+
+            String userAnswer = scanner.nextLine();
+            if (userAnswer.equalsIgnoreCase(question[5])) {
+                System.out.println("Correct!");
+                score++;
+            } else {
+                System.out.println("Incorrect. The correct answer is " + question[5] + ").");
+            }
+            System.out.println();
+        }
+
+        System.out.println("Your total score: " + score + "/" + questions.length);
+        scanner.close();
+    }
+}
+
+Output
+--------
+java -cp /tmp/Gva3D6984b/QuizApplication
+What is the capital of France?
+a) Berlin
+b) Madrid
+c) Paris
+d) Rome
+Your answer: c
+Correct!
+
+What is the capital of Germany?
+a) Berlin
+b) Madrid
+c) Paris
+d) Rome
+Your answer: b
+Incorrect. The correct answer is a).
+
+What is the capital of Spain?
+a) Berlin
+b) Madrid
+c) Paris
+d) Rome
+Your answer: 
