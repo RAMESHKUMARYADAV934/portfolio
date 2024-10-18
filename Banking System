@@ -1,0 +1,78 @@
+Develop a basic banking system where user can create an account,deposit money, withdraw money,and check their blance.Use classes to represent the account and its Methods. 
+sample output:
+Option:deposit,withdraw,check blance,exit 
+What would you like to do ?deposit 
+enter Enter amount to deposit:500
+Deposited: $500.00. New balance: $500.00.
+
+
+import java.util.Scanner;
+
+class Account {
+    private double balance;
+    private String accountNumber;
+
+    public Account() {
+        this.accountNumber = "123456"; 
+        this.balance = 0.0; 
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.printf("Deposited: $%.2f. New balance: $%.2f.%n", amount, balance);
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            System.out.printf("Withdrew: $%.2f. New balance: $%.2f.%n", amount, balance);
+        } else {
+            System.out.println("Insufficient funds.");
+        }
+    }
+
+    public void checkBalance() {
+        System.out.printf("Account Number: %s, Current balance: $%.2f.%n", accountNumber, balance);
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+}
+
+public class BankingSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Account account = new Account(); 
+        String option;
+
+        do {
+            System.out.println("Options: accountNumber, deposit, withdraw, check balance, exit");
+            System.out.print("What would you like to do? ");
+            option = scanner.nextLine().toLowerCase();
+
+            if (option.equals("accountnumber")) {
+                System.out.printf("Account Number: %s%n", account.getAccountNumber());
+            } else if (option.equals("deposit")) {
+                System.out.print("Enter amount to deposit: ");
+                double depositAmount = scanner.nextDouble();
+                account.deposit(depositAmount);
+                scanner.nextLine(); // Clear the buffer
+            } else if (option.equals("withdraw")) {
+                System.out.print("Enter amount to withdraw: ");
+                double withdrawAmount = scanner.nextDouble();
+                account.withdraw(withdrawAmount);
+                scanner.nextLine(); // Clear the buffer
+            } else if (option.equals("check balance")) {
+                account.checkBalance();
+            } else if (option.equals("exit")) {
+                System.out.println("Exiting the banking system.");
+            } else {
+                System.out.println("Invalid option. Please try again.");
+            }
+        } while (!option.equals("exit"));
+
+        scanner.close();
+    }
+}
+
